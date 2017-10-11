@@ -1,0 +1,15 @@
+F:\CodeFirstTemplate\CodeFirst.Data\obj\Debug\CodeFirst.Data.csprojResolveAssemblyReference.cache
+F:\CodeFirstTemplate\CodeFirst.Data\bin\Debug\CodeFirst.Data.dll.config
+F:\CodeFirstTemplate\CodeFirst.Data\bin\Debug\CodeFirst.Data.dll
+F:\CodeFirstTemplate\CodeFirst.Data\bin\Debug\CodeFirst.Data.pdb
+F:\CodeFirstTemplate\CodeFirst.Data\bin\Debug\CodeFirst.Domain.dll
+F:\CodeFirstTemplate\CodeFirst.Data\bin\Debug\CodeFirst.Tool.dll
+F:\CodeFirstTemplate\CodeFirst.Data\bin\Debug\EntityFramework.dll
+F:\CodeFirstTemplate\CodeFirst.Data\bin\Debug\log4net.dll
+F:\CodeFirstTemplate\CodeFirst.Data\bin\Debug\Newtonsoft.Json.dll
+F:\CodeFirstTemplate\CodeFirst.Data\bin\Debug\CodeFirst.Domain.pdb
+F:\CodeFirstTemplate\CodeFirst.Data\bin\Debug\CodeFirst.Tool.pdb
+F:\CodeFirstTemplate\CodeFirst.Data\bin\Debug\EntityFramework.xml
+F:\CodeFirstTemplate\CodeFirst.Data\obj\Debug\CodeFirst.Data.dll
+F:\CodeFirstTemplate\CodeFirst.Data\obj\Debug\CodeFirst.Data.pdb
+F:\CodeFirstTemplate\CodeFirst.Data\bin\Debug\zh-Hans\EntityFramework.resources.dll

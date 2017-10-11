@@ -1,0 +1,48 @@
+﻿<#@ template language="C#" debug="True" #>
+<#@ output extension="cs" #>
+<#@ Assembly Name="System.Core" #>
+<#@ Assembly Name="$(SolutionDir)\CodeFirst.Tool\bin\Debug\CodeFirst.Tool.dll" #>
+<#@ import namespace="System.IO" #>
+<#@ Import Namespace="System.Linq" #>
+<#@ Import Namespace="System.Text" #>
+<#@ import namespace="System.Reflection" #>
+<#@ Import Namespace="System.Collections.Generic" #>
+<#@ Import Namespace="CodeFirst.Tool" #>
+<#@ Import Namespace="CodeFirst.Tool.T4" #>
+<#@ include file="T4Toolbox.tt" #>
+<#@ include file="Include\EntityConfigurationTemplate.ttinclude" #>
+<#@ include file="Include\IEntityRepositoryTemplate.ttinclude" #>
+<#@ include file="Include\EntityRepositoryTemplate.ttinclude" #>
+<#
+    string currentPath = Path.GetDirectoryName(Host.TemplateFile);
+    string projectPath =currentPath.Substring(0, currentPath.IndexOf(@"\T4"));
+    string solutionPath = currentPath.Substring(0, currentPath.IndexOf(@"\CodeFirst.Data"));
+
+    string modelFile= Path.Combine(solutionPath, @"CodeFirst.Domain\bin\Debug\CodeFirst.Domain.dll");
+    byte[] fileData= File.ReadAllBytes(modelFile);
+    Assembly assembly = Assembly.Load(fileData);
+   Type baseType = typeof(EntityBase<>);
+    IEnumerable<Type> modelTypes = assembly.GetTypes().Where(m => m.IsAssignableToGenericType(baseType) && !m.IsAbstract);
+    foreach(Type modelType in modelTypes)
+    {
+        T4ModelInfo model = new T4ModelInfo(modelType, true);
+        Console.Write(model.ModuleName);
+        //实体映射类
+        EntityConfigurationTemplate config = new EntityConfigurationTemplate(model);
+        var path = string.Format(@"{0}\Mapping", projectPath);
+        config.Output.Encoding = Encoding.UTF8;
+        config.RenderToFile(Path.Combine(path, config.FileName));
+
+        //实体仓储操作接口
+        IEntityRepositoryTemplate irep= new IEntityRepositoryTemplate(model);
+        path =  string.Format(@"{0}\IRepository", projectPath);
+        irep.Output.Encoding = Encoding.UTF8;
+        irep.RenderToFile(Path.Combine(path, irep.FileName));
+        
+        //实体仓储操作实现
+        EntityRepositoryTemplate rep= new EntityRepositoryTemplate(model);
+        path = string.Format(@"{0}\Repository", projectPath);
+        rep.Output.Encoding = Encoding.UTF8;
+        rep.RenderToFile(Path.Combine(path, rep.FileName));
+    }
+#>

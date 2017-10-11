@@ -1,0 +1,95 @@
+﻿<#+
+
+
+public class EntityRepositoryTemplate : CSharpTemplate
+{
+    private T4ModelInfo _model;
+        
+    public EntityRepositoryTemplate(T4ModelInfo model)
+    {
+        _model = model;
+    }
+
+    /// <summary>
+    /// 获取 生成的文件名，根据模型名定义
+    /// </summary>
+    public string FileName
+    {
+        get
+        { 
+            return string.Format("{0}Service.cs", _model.Name);
+        }
+    }
+
+	public override string TransformText()
+	{
+#>
+//------------------------------------------------------------------------------
+//
+//		代码作者：吴培德
+//		生成时间：<#= DateTime.Now.ToString("yyyy-MM-dd HH:mm") #>
+//------------------------------------------------------------------------------
+
+using CodeFirst.Data.Infrastructure;
+using CodeFirst.Data.Repositories.IRepository;
+using CodeFirst.Domain;
+using CodeFirst.Service.IService;
+using System.Collections.Generic;
+
+
+
+namespace CodeFirst.Service.Service
+{
+	/// <summary>
+    ///   服务层、应用层实现——<#= _model.Description #>
+    /// </summary>
+    public partial class <#= _model.Name #>Service : I<#= _model.Name #>Service
+    { 
+       private readonly I<#= _model.Name #>Repository <#= _model.Name #>Repository;
+        private readonly IUnitOfWork unitOfWork;
+        public <#= _model.Name #>Service(I<#= _model.Name #>Repository <#= _model.Name #>Repository, IUnitOfWork unitOfWork)
+        {
+            this.<#= _model.Name #>Repository = <#= _model.Name #>Repository;
+            this.unitOfWork = unitOfWork;
+        }  
+        #region I<#= _model.Name #>Service Members
+
+        public IEnumerable<<#= _model.Name #>> Get<#= _model.Name #>List()
+        {
+            var <#= _model.Name #> = <#= _model.Name #>Repository.GetAll();
+            return <#= _model.Name #>;
+        }
+
+        public <#= _model.Name #> Get<#= _model.Name #>(int id)
+        {
+            var <#= _model.Name #> = <#= _model.Name #>Repository.GetById(id);
+            return <#= _model.Name #>;
+        }
+
+        public void Create<#= _model.Name #>(<#= _model.Name #> <#= _model.Name #>)
+        {
+            <#= _model.Name #>Repository.Add(<#= _model.Name #>);
+            Save<#= _model.Name #>();
+        }
+
+        public void Delete<#= _model.Name #>(int id)
+        {
+            var <#= _model.Name #> = <#= _model.Name #>Repository.GetById(id);
+            <#= _model.Name #>Repository.Delete(<#= _model.Name #>);
+            Save<#= _model.Name #>();
+        }
+
+        public void Save<#= _model.Name #>()
+        {
+            unitOfWork.Commit();
+        }
+
+        #endregion
+
+    }
+}
+<#+
+        return this.GenerationEnvironment.ToString();
+	}
+}
+#>

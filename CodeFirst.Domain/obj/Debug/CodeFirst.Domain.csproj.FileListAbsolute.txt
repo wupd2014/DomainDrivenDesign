@@ -1,0 +1,8 @@
+F:\CodeFirstTemplate\CodeFirst.Domain\bin\Debug\CodeFirst.Domain.dll
+F:\CodeFirstTemplate\CodeFirst.Domain\bin\Debug\CodeFirst.Domain.pdb
+F:\CodeFirstTemplate\CodeFirst.Domain\bin\Debug\CodeFirst.Tool.dll
+F:\CodeFirstTemplate\CodeFirst.Domain\bin\Debug\log4net.dll
+F:\CodeFirstTemplate\CodeFirst.Domain\bin\Debug\Newtonsoft.Json.dll
+F:\CodeFirstTemplate\CodeFirst.Domain\bin\Debug\CodeFirst.Tool.pdb
+F:\CodeFirstTemplate\CodeFirst.Domain\obj\Debug\CodeFirst.Domain.dll
+F:\CodeFirstTemplate\CodeFirst.Domain\obj\Debug\CodeFirst.Domain.pdb

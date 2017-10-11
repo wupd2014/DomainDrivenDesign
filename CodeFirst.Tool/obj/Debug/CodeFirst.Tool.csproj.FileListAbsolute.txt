@@ -1,0 +1,7 @@
+F:\CodeFirstTemplate\CodeFirst.Tool\bin\Debug\CodeFirst.Tool.dll
+F:\CodeFirstTemplate\CodeFirst.Tool\bin\Debug\CodeFirst.Tool.pdb
+F:\CodeFirstTemplate\CodeFirst.Tool\bin\Debug\log4net.dll
+F:\CodeFirstTemplate\CodeFirst.Tool\bin\Debug\Newtonsoft.Json.dll
+F:\CodeFirstTemplate\CodeFirst.Tool\obj\Debug\CodeFirst.Tool.csprojResolveAssemblyReference.cache
+F:\CodeFirstTemplate\CodeFirst.Tool\obj\Debug\CodeFirst.Tool.dll
+F:\CodeFirstTemplate\CodeFirst.Tool\obj\Debug\CodeFirst.Tool.pdb

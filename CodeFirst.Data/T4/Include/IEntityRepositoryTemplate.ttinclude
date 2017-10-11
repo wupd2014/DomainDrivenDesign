@@ -1,0 +1,49 @@
+﻿<#+
+
+public class IEntityRepositoryTemplate : CSharpTemplate
+{
+    private T4ModelInfo _model;
+        
+    public IEntityRepositoryTemplate(T4ModelInfo model)
+    {
+        _model = model;
+    }
+
+    /// <summary>
+    /// 获取 生成的文件名，根据模型名定义
+    /// </summary>
+    public string FileName
+    {
+        get
+        { 
+            return string.Format("I{0}Repository.cs", _model.Name);
+        }
+    }
+
+	public override string TransformText()
+	{
+#>
+//------------------------------------------------------------------------------
+//		代码作者：吴培德
+//		生成时间：<#= DateTime.Now.ToString("yyyy-MM-dd HH:mm") #>
+//------------------------------------------------------------------------------
+
+using System;
+
+using CodeFirst.Domain;
+using CodeFirst.Data.Infrastructure;
+
+
+namespace  CodeFirst.Data.Repositories.IRepository
+{
+	/// <summary>
+    ///   仓储操作层接口——<#= _model.Description #>
+    /// </summary>
+    public partial interface I<#= _model.Name #>Repository : IRespository<<#= _model.Name #>>
+    { }
+}
+<#+
+        return this.GenerationEnvironment.ToString();
+	}
+}
+#>

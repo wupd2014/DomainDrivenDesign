@@ -1,0 +1,55 @@
+﻿<#+
+
+public class IEntityRepositoryTemplate : CSharpTemplate
+{
+    private T4ModelInfo _model;
+        
+    public IEntityRepositoryTemplate(T4ModelInfo model)
+    {
+        _model = model;
+    }
+
+    /// <summary>
+    /// 获取 生成的文件名，根据模型名定义
+    /// </summary>
+    public string FileName
+    {
+        get
+        { 
+            return string.Format("I{0}Service.cs", _model.Name);
+        }
+    }
+
+	public override string TransformText()
+	{
+#>
+//------------------------------------------------------------------------------
+//
+//		代码作者：吴培德
+//		生成时间：<#= DateTime.Now.ToString("yyyy-MM-dd HH:mm") #>
+//------------------------------------------------------------------------------
+
+using CodeFirst.Domain;
+using System;
+using System.Collections.Generic;
+
+
+namespace  CodeFirst.Service.IService
+{
+	/// <summary>
+    ///   服务层、应用层接口——<#= _model.Description #>
+    /// </summary>
+    public partial interface I<#= _model.Name #>Service 
+    {
+        IEnumerable<<#= _model.Name #>> Get<#= _model.Name #>List();
+        <#= _model.Name #> Get<#= _model.Name #>(int id);
+        void Create<#= _model.Name #>(<#= _model.Name #> <#= _model.Name #>);
+        void Delete<#= _model.Name #>(int id);
+        void Save<#= _model.Name #>();
+    }
+}
+<#+
+        return this.GenerationEnvironment.ToString();
+	}
+}
+#>
